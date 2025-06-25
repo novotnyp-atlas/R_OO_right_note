@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Project for ANA-HION-2025-03-INT1
 ====================
 
@@ -28,3 +29,6 @@ In order to proceed to submission a merge should be placed following [these inst
 2. Prepare the [Metadata.txt](https://atlas-po.docs.cern.ch/writing-your-document/#atlas-metadata-file) file according to [these instructions](https://atlas-po.docs.cern.ch/first_sub/#atlas-metadata-file). This file can be either added to the project and linked in the merge request or attached directly to the merge request itself.
 3. Check that the figures and tables webpages tarball will be properly generated. This is done in the `PO-*` pipelines automatically after the merge request is accepted by Physics Office but it is good if editors can test it first following the instructions [here](https://atlas-po.docs.cern.ch/pipelines/#how-to-test-the-po-ready-pipeline).
 4. Finally [place the merge request.](https://atlas-po.docs.cern.ch/first_sub/#merge-request).
+=======
+# R_OO_right_note
+>>>>>>> f2c1fb72de47fc2a51d043bb69b81ecbaa27c485
