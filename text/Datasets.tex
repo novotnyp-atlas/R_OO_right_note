@@ -1,0 +1,43 @@
+\chapter{Datasets and simulations}
+\label{chap:dataset}
+\section{Datasets}
+Data samples analyzed are listed in Table~\ref{tab:comb}, 
+\begin{table}[!h]
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Increase the height of all rows
+\setlength{\tabcolsep}{2.5pt} % Adjust this value to shrink or expand column spacing
+\begin{tabular}{ccccc}
+System & $\sqn\ [\TeV]$ & Trigger & Release \\ \hline
+$\pprefSample$  & 5.36 & $\pprefMBtrig$ & f1529\_m2259  \\
+$\OO$  & 5.36 & $\pprefMBtrig$ & unknown  \\
+$\NeNe$  & 5.36 & $\pprefMBtrig$ & unknown  \\
+\end{tabular}
+\end{center}
+\caption{Data samples}
+\label{tab:comb}
+\end{table}
+$\pprefSample$ data are taken from the MinBias stream reconstructed in the HIP mode. For the \OO and \NeNe data-taking, only one stream and reconstruction in the HIP will likely be taken. \blue{There are ongoing studies on the jet triggers, in case it would be needed, and possible to prolong the $\pp$ spectrum. The decision will depend on the actual reach of the collected \OO data.} \black{}
+
+\section{MC samples}
+To obtain the correction factor $C^{pp/\text{AA}}(p_T, \eta)$ and for the supporting studies of corrections and cuts, MC Pythia 8.308 samples were generated in three groups. The first group consists of various diffraction modes without pile-up (PU) simulation using $\mathrm{pp_{ref}}$ conditions. The second group is only the non-diffractive MC with PU using $\pprefSample$ conditions. The final group is again only one sample, non-diffractive MC without PU using pre-\OO run conditions. The samples are listed in Table~\ref{tab:comb}.
+
+\begin{table}[!h]
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Increase the height of all rows
+\setlength{\tabcolsep}{2.5pt} % Adjust this value to shrink or expand column spacing
+\begin{tabular}{ccc}
+Sample & $\mathrm{n_{events}}$ & DSID \\ \hline
+group 1 - NO PU, $\mathrm{pp_{ref}}$ conditions \\ \hline
+Py8EG\_A3\_NNPDF23LO\_minbias\_ND  & 1 mio & 801451  \\
+Py8EG\_A3\_NNPDF23LO\_minbias\_SD  & 500 k & 801452  \\
+Py8EG\_A3\_NNPDF23LO\_minbias\_DD  & 500 k & 801453  \\
+Py8EG\_A3\_NNPDF23LO\_minbias\_CD  & 50 k & 802060  \\ \hline
+group 2 - with PU, $\mathrm{pp_{ref}}$ conditions \\ \hline
+Py8EG\_A3\_NNPDF23LO\_minbias\_ND  & 1 mio & 801451 (same evgen)  \\ \hline
+group 3 - no PU, pre-\OO conditions \\ \hline
+Py8EG\_A3\_NNPDF23LO\_minbias\_ND  & 1 mio & 801451 (same evgen)  \\
+\end{tabular}
+\end{center}
+\caption{MC Pythia 8 samples}
+\label{tab:comb}
+\end{table}

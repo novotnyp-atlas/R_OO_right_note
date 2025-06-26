@@ -1,0 +1,62 @@
+\chapter{Introduction}
+\label{chap:intro}
+
+The analysis aims to investigate possible suppression or enhancement of inclusive charged-hadron production in $\sqn=5.36$~TeV collisions of $\OO$ and $\NeNe$ using the ATLAS detector at the LHC in the form of a fast track analysis. The goal is to measure $\RAA$ up to its statistical limit, that is, given the short pilot $\OO$ run planned in July, will be limited to $\pT$ of 50 GeV inclusively in centrality. This reach is estimated based on the comparison to the reach of the $\RpPb$ measurement during the $\pPb$ pilot run (1~$\mu$b, \cite{pPb_pilot} taken at a comparable energy $\sqn=5.02$~TeV in 2012, the slope of the charge hadron spectrum \cite{chargedHadronATLAS}, and an expected factor of 1000 times higher collected luminosity as presented during the Corr\&Fluc subgroup meetings \cite{pt_reach_projection_1}. Analysis of the $\NeNe$ nuclear modification based on the results of neon ions colliding by the LHC shortly after oxygen is expected to have comparable or lesser data volume and follow the $\OO$ measurement. Therefore, it is not considered separately. 
+
+The 425~\ipb of $\pp$ baseline data at the same per-nucleon energy was obtained by the ATLAS detector in 2024. These data, in principle, allow measuring charged hadron spectra to a much higher $\pT$, but that measurement has not been performed yet. As it has been proven by many previous works, measuring charged particle spectra up to intermediate momenta, like $\pT=50$~GeV and higher momenta~\cite{chargedHadronATLAS} requires significantly different approaches in the analysis and the amount of work. For that reason, and to provide a fast, yet precise measurement with ATLAS, the analysis strategy for this measurement was suggested as explained below. 
+
+\section{Existing results and predictions}
+
+Charged hadron spectra have been previously studied by ATLAS in $\pp$, $\pPb$, $\PbPb$, and $\XeXe$ at $\sqn=\qty{5.02}{\TeV}$ \cite{chargedHadronATLAS} as well as $\frac{d\nchar}{d\eta}$ in $\pPb$ at the same energy \cite{ATLAS:2015hkr} as a broader attempt to bridge the description of collisions of small systems and the peripheral collisions of large systems. $\OO$ and $\NeNe$ represent an intermediate system between $\pp$ and $\PbPb$, while the detector activity ought to resemble $\pPb$ collisions. Nuclear modification factor of the charged hadrons in the O+O collisions was studied by the STAR experiment at $\sqn = \qty{200}{\GeV}$. Preliminary results were shown at the QM25 \cite{star_roo_qm25}.
+
+\section{Definition of variables}
+Nuclear modification factor $R_{\mathrm{AB}}$ is generally defined as
+\begin{equation}
+    R_{\mathrm{AB}} = \sigma^{\mathrm{AB}}/(A\times B \times \sigma_{_{\mathrm{NN}}}),
+\end{equation}
+where $\sigma^{\mathrm{AB}}$ is a reaction cross section in ion-ion collisions, A and B are the atomic numbers of the colliding species, and $\sigma_{_{\mathrm{NN}}}$ is a nucleon-nucleon interaction cross section. For a symmetric system A=B, $R_{\mathrm{AB}}$ is denoted as $\RAA$. Since most of the measurements are using $\pp$ collisions as a baseline, $\sigma_{_{\mathrm{NN}}}$ is typically replaced by $\sigma_{\pp}$. Conventionally, a correction for the isospin differences resulting from $\sigma_{_{\mathrm{NN}}}\neq\sigma_{\pp}$ is not applied to the experimental results, unless it is specifically discussed. 
+
+When $\RAA \sim 1$, the nuclear collision happens as the uncorrelated sum of nucleon-nucleon collisions. Indeed, for high-\pT probes without the color charge, such as Z and W bosons, the $\RAA$ is consistent with unity \cite{W_boson, Z_boson}. Conversely, the $\RAA$ deviates from unity for jets and charged hadrons as these probes are suppressed in the interactions with the quark-gluon plasma (QGP) created in the heavy ion collisions. The deviation is more significant in more central collisions \cite{jet_RAA}, where higher losses of color-charged probes are observed.
+% the QGP is more dense and hot {\blue or just larger, thus increasing path length, how one distinguishes?}, causing higher losses of color-charged probes.
+
+Furthermore, the measurements are usually performed differentially in kinematic variables of the produced particles. Therefore, a commonly used definition is written as: 
+\begin{equation}
+% \RAA = \frac{1}{\avgTAA}\frac{(1/N^{\text{AA}}_\text{evt})\dif^2 N^{\text{AA}} / \dif \pT\dif\eta }{\dif^2\sigma^{\pp} / \dif \pT\dif\eta}, 
+  %  \quad 
+    \RAA = \frac{1}{A^2}\frac{\dd^2 \sigma^{\text{AA}}/\dd\pT\dd\eta }{\dd^2\sigma^{\pp} / \dd\pT\dd\eta},
+\end{equation}
+Without access to the luminosity, one can work out \RAA using the number of interactions $N_\mathrm{evt}$ between the colliding species in ion-ion and \pp systems, in which case the \RAA can be written as
+\begin{equation}
+    \RAA = 
+    \frac{1}{\Ncoll}
+    \frac{N^{\pp}_{\mathrm{evt}}}{N^{\mathrm{AA}}_{\mathrm{evt}}}
+    \frac{\dd^2 n^{\mathrm{AA}}_{\mathrm{ch}}\dd\pT\dd\eta}
+         {\dd^2 n^{\pp}_{\mathrm{ch}}/\dd\pT\dd\eta},
+    \label{eqn:RAA_measurable}
+\end{equation}
+where \Ncoll is the number of binary collisions between nucleons of two nuclei in the interaction, $N_{\mathrm{evt}}$ is the number of analyzed collision events in corresponding samples, and $n_{\mathrm{ch}}$ is the number of charged particles (hadrons) in those events. 
+
+\section{Analysis strategy}
+The analysis strategy chosen for this measurement aims to produce the most accurate and fastest results using the new data. We anticipate that the interest in this measurement in the HI community will be very high; therefore, providing a fast measurement has its value. We start from the following considerations.
+\begin{itemize}
+\item[$\cdot$] the full statistics of the \OO run will be sufficient to measure \RAA in the range up to $\pT=50$~GeV.
+\item[$\cdot$] the \pp reference, obtained last year, was taken under similar detector conditions as the upcoming run and has significantly larger statistics.
+\item[$\cdot$] given the large statistics accumulated in 2024 data, working out the charged hadron spectrum in \pp is a significant effort that would require resources comparable to measurements of the \RAA in \OO system. Therefore, we suggest not publishing the fully corrected spectra not in \pp and not in \OO, but entirely focusing on the \RAA.
+\item[$\cdot$] the measurements of the \RAA is typically done differentially in \pT, in rapidity and in interval of centrality. Since the \OO is a symmetric system, the run statistics is limited and $\eta$-dependencies are not expected to be strong, we will measure the results integrated over the detector coverage, i.e., in $|\eta|<2.5$.
+\item[$\cdot$] The measurement to be performed in this analysis will not be done in different intervals of centrality, but will be averaged over the minbias sample. This decision follows two goals: the first is a desire to produce a fast result. At the same time, centrality association, especially in a small system, is not a trivial procedure and requires a systematic uncertainty coming from the association procedure, which may become a leading uncertainty of a measurement. Since the anticipated deviation of the \RAA in this measurement at most 25 \% at the low-\pT edge and getting closer to 1 as the \pT grows (see Figure~\ref{fig:RAA_prediction}), we prefer avoiding additional uncertainty coming from working out centrality intervals.
+\end{itemize}
+
+Given these consideration, the equation~\eqref{eqn:RAA_measurable} can be written as
+\begin{equation}
+    \RAA = 
+    \frac{1}{\avgNcoll}
+    \frac{N^{\pp}_{\mathrm{evt}}}{N^{\mathrm{AA}}_{\mathrm{evt}}}
+    \frac{\dd n^{\mathrm{AA}}_{\mathrm{trk}}\dd\pT}
+         {\dd n^{\pp}_{\mathrm{trk}}/\dd\pT}C(\pT)
+\end{equation}
+where \avgNcoll is the number of \Ncoll in the analysed interval of centralities -- minbias sample, $n_{\mathrm{trk}}$ is the number of tracks reconstructed in the detector and passed the selection criteria, and $C(\pT)$ is a composite factor related to the difference in detector conditions between \pp and $\text{AA}$ data-taking conditions. Analyzing the minimum bias sample, we hope that \avgNcoll will be very close to the \Ncoll that can be extracted from the Glauber model, and given that the conditions of the 2024 and 2025 data taking and processing are close to each other, the $C(\pT)$ factor is going to be close to unity. Thus, the uncertainties that are expected in the measurements of \RAA in the proposed analysis strategy will come from \textit{i)} statistics of the \OO sample, \textit{ii)} $C(\pT)$ \textit{iii)} \Ncoll determination from the model, and \textit{iv)} measurements of $N_{\mathrm{evt}}$ in both systems, detailed in Chapter~\ref{chap:corr}. The last two factors do not affect the \pT dependence of the \RAA.
+
+%Analysis methods (track quality and track-to-vertex matching selections) are chosen to facilitate measurement in the low-\pT reach, while allowing quick analysis. The analysis pace is also supported by the definition of the \RAA based on \Ncoll and correction factor $C$, avoiding waiting for luminosity and detailed studies of track reconstruction efficiencies and pile-up removal. Finally, most of the corrections and systematics, which would be needed for measuring charged hadron spectra separately in $\ppref$ and \OO neglect each other in \RAA measurement. 
+
+
+

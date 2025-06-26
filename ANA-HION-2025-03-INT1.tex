@@ -55,7 +55,7 @@
 
 % Files with references for use with biblatex.
 % Note that biber gives an error if it finds empty bib files.
-% \addbibresource{ANA-HION-2025-03-INT1.bib}
+\addbibresource{ANA-HION-2025-03-INT1.bib}
 \addbibresource{bib/ATLAS.bib}
 \addbibresource{bib/CMS.bib}
 \addbibresource{bib/ConfNotes.bib}
@@ -92,38 +92,20 @@
 % List of to-do notes.
 % \listoftodos
 
-%-------------------------------------------------------------------------------
-\chapter{Introduction}
-\label{sec:intro}
-%-------------------------------------------------------------------------------
-
-Place your introduction here.
-
-%-------------------------------------------------------------------------------
-\chapter{Analysis}
-\label{sec:analysis}
-%-------------------------------------------------------------------------------
-
-You can find some text snippets that can be used in papers in \texttt{latex/atlassnippets.sty}.
-To use them, provide the \texttt{snippets} option to \texttt{atlasphysics}.
-
-%-------------------------------------------------------------------------------
-\chapter{Results}
-\label{sec:result}
-%-------------------------------------------------------------------------------
-
-Place your results here.
+\input{text/Introduction}
+%\input{text/ATLAS}
+\input{text/Datasets}
+\input{text/Event_selection}
+\input{text/Track_selection}
+\input{text/Corrections}
+\input{text/Glauber}
+\input{text/Systematics}
+\input{text/Results}
+\input{text/Conclusions}
 
 % All figures and tables should appear before the summary and conclusion.
 % The package placeins provides the macro \FloatBarrier to achieve this.
 % \FloatBarrier
-
-%-------------------------------------------------------------------------------
-\chapter{Conclusion}
-\label{sec:conclusion}
-%-------------------------------------------------------------------------------
-
-Place your conclusion here.
 
 %-------------------------------------------------------------------------------
 % If you use biblatex and either biber or bibtex to process the bibliography
@@ -139,10 +121,12 @@ Place your conclusion here.
 % The argument gives the fraction of the text width used for the names.
 %-------------------------------------------------------------------------------
 \clearpage
-The supporting notes for the analysis should also contain a list of contributors.
-This information should usually be included in \texttt{mydocument-metadata.tex}.
-The list should be printed either here or before the Table of Contents.
 \PrintAtlasContribute{0.30}
+\begin{itemize}
+\item Patrik Novotny: Data analysis, emphasis on \OO. Text editing. 
+\item Pavel Pavzderin: Data analysis, emphasis on \pp. Text editing. 
+\item Alexander Milov: Analysis supervision and text editing.
+\end{itemize}
 
 %-------------------------------------------------------------------------------
 \clearpage
@@ -150,9 +134,4 @@ The list should be printed either here or before the Table of Contents.
 \part*{Appendices}
 \addcontentsline{toc}{part}{Appendices}
 %-------------------------------------------------------------------------------
-
-In an ATLAS note, use the appendices to include all the technical details of your work
-that are relevant for the ATLAS Collaboration only (e.g.\ dataset details, software release used).
-This information should be printed after the Bibliography.
-
 \end{document}
