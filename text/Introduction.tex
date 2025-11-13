@@ -25,16 +25,16 @@ Furthermore, the measurements are usually performed differentially in kinematic 
   %  \quad 
     \RAA = \frac{1}{A^2}\frac{\dd^2 \sigma^{\text{AA}}/\dd\pT\dd\eta }{\dd^2\sigma^{\pp} / \dd\pT\dd\eta},
 \end{equation}
-Without access to the luminosity, one can work out \RAA using the number of interactions $N_\mathrm{evt}$ between the colliding species in ion-ion and \pp systems, in which case the \RAA can be written as
+Given we will have access only to the $\pprefSample$ luminosity $\mathcal{L}_{pp}$, but not to the \OO one, the $\RAA$ can be calculated using the $\RAA$ the nuclear thickness function $\TAA$ (sometimes called “per collision luminosity”)
 \begin{equation}
     \RAA = 
-    \frac{1}{\Ncoll}
-    \frac{N^{\pp}_{\mathrm{evt}}}{N^{\mathrm{AA}}_{\mathrm{evt}}}
+    \frac{\mathcal{L}_{pp}}{\TAA}
+    \frac{1}{N^{\mathrm{AA}}_{\mathrm{evt}}}
     \frac{\dd^2 n^{\mathrm{AA}}_{\mathrm{ch}}\dd\pT\dd\eta}
          {\dd^2 n^{\pp}_{\mathrm{ch}}/\dd\pT\dd\eta},
     \label{eqn:RAA_measurable}
 \end{equation}
-where \Ncoll is the number of binary collisions between nucleons of two nuclei in the interaction, $N_{\mathrm{evt}}$ is the number of analyzed collision events in corresponding samples, and $n_{\mathrm{ch}}$ is the number of charged particles (hadrons) in those events. 
+where $N^{\mathrm{AA}}_{\mathrm{evt}}$ is the number of analyzed collision events in the \OO samples, and $n_{\mathrm{ch}}$ is the number of charged particles (hadrons) in either $\pprefSample$ or \OO sample. 
 
 \section{Analysis strategy}
 The analysis strategy chosen for this measurement aims to produce the most accurate and fastest results using the new data. We anticipate that the interest in this measurement in the HI community will be very high; therefore, providing a fast measurement has its value. We start from the following considerations.
@@ -49,12 +49,14 @@ The analysis strategy chosen for this measurement aims to produce the most accur
 Given these consideration, the equation~\eqref{eqn:RAA_measurable} can be written as
 \begin{equation}
     \RAA = 
-    \frac{1}{\avgNcoll}
-    \frac{N^{\pp}_{\mathrm{evt}}}{N^{\mathrm{AA}}_{\mathrm{evt}}}
+    \frac{\mathcal{L}_{pp}}{\avgTAA}
+    \frac{1}{N^{\mathrm{AA}}_{\mathrm{evt}}}
     \frac{\dd n^{\mathrm{AA}}_{\mathrm{trk}}\dd\pT}
          {\dd n^{\pp}_{\mathrm{trk}}/\dd\pT}C(\pT)
+    \label{eqn:RAA_final}
 \end{equation}
-where \avgNcoll is the number of \Ncoll in the analysed interval of centralities -- minbias sample, $n_{\mathrm{trk}}$ is the number of tracks reconstructed in the detector and passed the selection criteria, and $C(\pT)$ is a composite factor related to the difference in detector conditions between \pp and $\text{AA}$ data-taking conditions. Analyzing the minimum bias sample, we hope that \avgNcoll will be very close to the \Ncoll that can be extracted from the Glauber model, and given that the conditions of the 2024 and 2025 data taking and processing are close to each other, the $C(\pT)$ factor is going to be close to unity. Thus, the uncertainties that are expected in the measurements of \RAA in the proposed analysis strategy will come from \textit{i)} statistics of the \OO sample, \textit{ii)} $C(\pT)$ \textit{iii)} \Ncoll determination from the model, and \textit{iv)} measurements of $N_{\mathrm{evt}}$ in both systems, detailed in Chapter~\ref{chap:corr}. The last two factors do not affect the \pT dependence of the \RAA.
+where \avgTAA is the number of \TAA in the analysed interval of centralities -- minbias sample, $n_{\mathrm{trk}}$ is the number of tracks reconstructed in the detector and passed the selection criteria, and $C(\pT)$ is a composite factor related to the difference in detector conditions between \pp and $\text{AA}$ data-taking conditions. Analyzing the minimum bias sample, we hope that \avgTAA will be very close to the \TAA that can be extracted from the Glauber model, and given that the conditions of the 2024 and 2025 data taking and processing are close to each other, the $C(\pT)$ factor is going to be close to unity. Thus, the uncertainties that are expected in the measurements of \RAA in the proposed analysis strategy will come from \textit{i)} statistics of the \OO sample, \textit{ii)} $C(\pT)$ \textit{iii)} uncertainty on the $\mathcal{L}_{pp}$, \textit{iv)} \TAA determination from the model, and \textit{v)}
+measurements of $N_{\mathrm{evt}}$ in \OO, detailed in Chapter~\ref{chap:corr}. The last two factors do not affect the \pT dependence of the \RAA.
 
 %Analysis methods (track quality and track-to-vertex matching selections) are chosen to facilitate measurement in the low-\pT reach, while allowing quick analysis. The analysis pace is also supported by the definition of the \RAA based on \Ncoll and correction factor $C$, avoiding waiting for luminosity and detailed studies of track reconstruction efficiencies and pile-up removal. Finally, most of the corrections and systematics, which would be needed for measuring charged hadron spectra separately in $\ppref$ and \OO neglect each other in \RAA measurement. 
 

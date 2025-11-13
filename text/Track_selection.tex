@@ -23,7 +23,21 @@ The cutflow on reconstructed tracks, in $\pprefSample$ reconstruction, starts at
 \end{table}
 
 \section{Track-to-vertex association}
-Additional selection criterion on tracks is a cut on the transverse impact parameter $d_0$ with respect to the beamspot: $|d_0| < 1.5$ mm and $|d_0/\sigma_{d_0}| < 4$ (significance cut), where $\sigma_{d_0}$ is the error of $d_0$ estimation. Performance of such selection can be seen in Figure~\ref{fig:cutflow_d0}
+{\green NEW $p_T$-dependent $d_0$ cut:
+\begin{equation}
+    |d_0| < 0.726458\exp(-0.886906p_T)+0.173646\exp(0.00119139p_T),
+\end{equation}
+where the function is obtained by taking $4\sigma$ from gaussian fit to slices (see Figure~\ref{fig:d0ptcut})
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\linewidth]{images/d0_slice3.png}
+    \includegraphics[width=0.48\linewidth]{images/d0pt_cut.pdf}
+    \caption{Left: distribution of $d_0$ for $3<p_T<5$ GeV. Right: $d_0$ as a function of $p_T$. Tracks pass ''TightPrimary'' quality selection}
+    \label{fig:d0ptcut}
+\end{figure}
+}
+
+Additional selection criterion on tracks is a cut on the transverse impact parameter $d_0$ with respect to the vertex: $|d_0| < 1.5$ mm and $|d_0/\sigma_{d_0}| < 4$ (significance cut), where $\sigma_{d_0}$ is the error of $d_0$ estimation. Performance of such selection can be seen in Figure~\ref{fig:cutflow_d0}
 \begin{figure}[h]
     \centering
     % \includegraphics[width=0.32\linewidth]{images/d0_vs_pt_almost_all_h2d_d0_vs_pt_cut0_.png}
@@ -51,7 +65,7 @@ where $\sigma_{\omega_0}$ is the standard error of $\omega_0$, which is inferred
 \begin{equation}
     \sigma_{\omega_0} = \sqrt{\sigma^2_{z_0}\sin^2\theta + \sigma^2_{\theta}(\Delta z_0)^2\cos^2\theta}
 \end{equation}
-The effect of the $|\omega_0|$ cut is demonstrated on Figure~\ref{fig:cutflow_d0}. Such a cut depends on $\mu$ as the number of merged vertices rises with $\mu$ \cite{ATLAS:2016nnj}. If two vertices merge into one, $z$ of both of them moves towards the center of mass of the pair. Consequently, the associated tracks will have greater $\omega_0$, which can be seen on the right plot of Figure~\ref{fig:lowmu_highmu_ip_norm}. The effect of merging in a perpendicular plane to the beamline is not very strong (see Figure~\ref{fig:lowmu_highmu_ip_norm}, left), because the ''effective area'' is much smaller (see Section~\ref{sec:vertex_merging}). 
+The effect of the $|\omega_0|$ cut is demonstrated on Figure~\ref{fig:cutflow_d0}. Such a cut depends on $\mu$ as the number of merged vertices rises with $\mu$ \cite{ATLAS:2016nnj}. If two vertices merge into one, $z$ of both of them moves towards the center of mass of the pair. Consequently, the associated tracks will have greater $\omega_0$, which can be seen on the right plot of Figure~\ref{fig:lowmu_highmu_ip_norm}. The effect of merging in a perpendicular plane to the beamline is not very strong (see Figure~\ref{fig:lowmu_highmu_ip_norm}, left), because the ''effective area'' is much smaller. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.49\linewidth]{images/trk_d0_norm_488573.png}
@@ -73,11 +87,12 @@ The effect of the $|\omega_0|$ cut is demonstrated on Figure~\ref{fig:cutflow_d0
 %}
 
 \section{Track-to-jet matching}
+\label{chap:TTJM}
 High-\pT tracks mostly originate in jets. Therefore, one can employ track-to-jet matching. The present analysis took a simplistic approach, expecting the kinematic reach to be around $50$ GeV. Using a distance between a track $i$ and a jet $j$ in $\eta-\phi$ plane:
 \begin{equation}
     \Delta R_{ij} = \sqrt{(\eta^i - \eta^j)^2 + (\phi^i-\phi^j)^2}, \quad \min_j \Delta R_{ij} = dR_i,
 \end{equation}
-the track $i$ is matched to a jet if $dR_i < 0.4$. Jet collection used is \textit{AntiKt4HIJets}. No selection criteria on jets are required.
+the track $i$ is matched to a jet if $dR_i < 0.4$. Jet collection used is \textit{AntiKt4HIJets}. Jets in both $\pprefSample$ and $\OO$ data must have $\pT$ > 30 GeV. Using jets above this kinematic cut ensures the full jet reconstruction efficiency in both the $\pprefSample$ and $\OO$ samples, based on the jet performance studies \cite{riccs_note}. Distance $dR$ as a function of $\pT$ is presented on the Figure~\ref{fig:cutflow_mindr}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.32\linewidth]{images/mindR_vs_pt_almost_all_h2d_mindr_vs_pt_cut0_.png}
@@ -87,15 +102,56 @@ the track $i$ is matched to a jet if $dR_i < 0.4$. Jet collection used is \texti
     \label{fig:cutflow_mindr}
 \end{figure}
 
-The jet-matching performance can be seen in Figure~\ref{fig:jetmatched_fractions}, where matching efficiency gets close to 1 around 20 GeV and then for higher $\pT$ starts to drop again, therefore we set the cut to be $dR<0.4$ for tracks with $\pT > \qty{20}{\GeV}$
+The jet-matching performance can be seen in Figure~\ref{fig:jetmatched_fractions}, where matching efficiency gets close to 1 around 20 GeV and then for higher $\pT$ starts to drop again, therefore we set the cut to be $dR<0.4$ for tracks with $\pT > \qty{20}{\GeV}$.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.55\linewidth]{images/trk_jetmatch0_.png}
+    \includegraphics[width=0.45\linewidth]{images/trk_jetmatch0_pp.png}
+    \hskip5pt
+    \includegraphics[width=0.45\linewidth]{images/trk_jetmatch0_oo.png}
     % \includegraphics[width=0.49\linewidth]{images/trk_jetmatch1_.png}
     % \caption{Left: ''TightPrimary'' and $|d_0|<\qty{1.5}{\mm}$, $|d_0/\sigma_{d_0}| < 4$. Right: Additionally requiring $|\omega_0|<\qty{1.5}{\mm}$, $|\omega_0/\sigma_{\omega_0}| < 4$ and $|z_\text{vtx}|<\qty{150}{\mm}$}
-    \caption{Track-to-jet association probability based on $dR<0.4$ cut for tracks selected using ''TightPrimary'' quality and $d_0$ cuts compared with additionaly using $\omega_0$ cuts}
+    \caption{Track-to-jet association probability based on $dR<0.4$ cut for tracks selected using ''TightPrimary'' quality and $d_0$ cuts compared with additionally using $\omega_0$ cuts. Left: in $\pprefSample$ MB sample. Right: in $\OOSample$ MB sample.}
     \label{fig:jetmatched_fractions}
 \end{figure}
+
+However, a track can pass the track-to-jet matching requirement just by chance. A probability of matching a track to a jet based on the d$R$ condition in the fiducial space of $\phi$-$\eta$ yields:
+\begin{equation}
+    \mathcal{P}^\text{rnd}_\text{jet} = \frac{\pi dR^2}{\Delta \phi \Delta \eta} \sim 0.016
+    \label{eqn:prob_matching}
+\end{equation}
+Since the MB-triggered spectrum has a cap on the leading jet $\pT$, the chance to match a high $\pT$ track to a jet drops with the track $\pT$. Above a certain track $\pT$, the tracks associated randomly contribute dominantly to the spectrum. The end of the MB-triggered spectrum contains a few matched tracks. When this part of the spectrum is combined with the track originating in the jet-triggered sample, the total statistical uncertainty is overestimated. This is due to the fact that the MB-triggered spectrum of this area is heavily prescaled. 
+
+To remedy this problem, a track $\pT$ cut-off on the MB-triggered spectrum is set at $\pT \sim36$ GeV. The cut-off value was determined by comparison of the matched track distribution and the distribution before matching multiplied by the probability of random matching $\mathcal{P}^\text{rnd}_\text{jet}$ determined in equation \ref{eqn:prob_matching}. One can see the track distribution before matching, after matching, and the estimate of the randomly matched distribution in Figure~\ref{fig:rnd_jet_ass}.
+
+{\green Add cut on jet-track $p_T$ imbalance}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/rnd_jet_association.png}
+    \caption{MB spectrum in $\pprefMBtrig$ before matching to jets (full red markers), after (full black markers), and the estimate of random associations (open red markers)}
+    \label{fig:rnd_jet_ass}
+\end{figure}
+
+\section{High-\pT leptons removal}
+Another source of the high-\pT tracks is decays of the EW bosons. Such leptons leave a track in the inner detector, but not in the hadron calorimeter, and since these tracks are not part of the hadron spectrum, they are not of interest in this analysis and must be removed. A cut using the proximity in $\eta$ and $\phi$ of a track and a lepton is used to remove these tracks. The correlation between the electrons of at least 'Loose' WP and 10 GeV of \pT and selected tracks of any \pT is shown in Figure~\ref{fig:el_trk_corr}.
+
+
+\begin{figure}[h]
+    \centering
+     \includegraphics[width=0.55\linewidth]{images/trk_el_deta_dphi_jetsample488573.eps}
+     \caption{ The correlation between the electrons of at least 'Loose' WP and 10 GeV of \pT and selected tracks of any \pT}
+     \label{fig:el_trk_corr}
+ \end{figure}
+
+\blue{To be expanded.} \black{}
+
+\green{}
+\section{Spectrum unfolding}
+Both spectra \pp and \OO were unfolded using the RooUnfold package \cite{Adye2011RooUnfold}. Response matrices were generated using the MC samples listed in Tables \ref{tab:pythia} and \ref{}.
+
+
+
+\black{}
 
 \section{Summary}
 The final choice of track cuts used in the analysis is listed in Table~\ref{tab:tab_cuts}.
@@ -113,7 +169,7 @@ The final choice of track cuts used in the analysis is listed in Table~\ref{tab:
     Significance cut on $d_0$                & $|d_0/\sigma_{d_0}| <4$ \\
     Significance cut on $\omega_0$                & $|\omega_0/\sigma_{\omega_0}| <4$ \\
     Associated vertex                & $|z_\text{vtx}| < \qty{150}{\mm}$ \\
-    Track-to-jet association        & \(\mathrm{d}R < 0.4\) for $\pT>\qty{20}{\GeV}$ \\
+    Track-to-jet association        & \(\mathrm{d}R < 0.4\) for $\pT>\qty{30}{\GeV}$ \\
     \bottomrule
     \label{tab:tab_cuts}
   \end{tabular}

@@ -1,7 +1,8 @@
 \chapter{Systematic uncertainties}\label{chap:systematics}
 \section{Trigger efficiency}
-Systematics on the trigger efficiency changes with the multiplicity. Given that the efficiency was determined \cite{pPb_mbsptrk_trigger} using a detector under different conditions and for a different collision system, we assign to the efficiency $\epsilon_{\mathrm{trigger, pp}}$ for (loosePrimary + d0) track multiplicity == 2 absolute systematic uncertainty of 0.5 \%, for (loosePrimary + d0) track multiplicity > 2 \&\& < 5 an absolute systematic uncertainty of 0.1 \% and for multiplicity > 5 no systematic uncertainty. In the case of less than 2 tracks, no correction for the trigger efficiency was applied as these cases contribute negligibly to the $\RAA$.
+Systematics on the trigger efficiency changes with the multiplicity. Given that the efficiency was determined \cite{pPb_mbsptrk_trigger} using a detector under different conditions and for a different collision system, we assign to the efficiency $\epsilon_{\mathrm{trigger, pp}}$ for (loosePrimary + d0) track multiplicity == 2 absolute systematic uncertainty of 0.5~\%, for (loosePrimary + d0) track multiplicity > 2 \&\& < 5 an absolute systematic uncertainty of 0.1~\% and for multiplicity > 5 no systematic uncertainty. In the case of less than 2 tracks, no correction for the trigger efficiency was applied as these cases contribute negligibly to the $\RAA$.
 
+\begin{comment}
 \section{Vertex reconstruction efficiency}
 Removing the beam background was not applied to determine the vertex reconstruction efficiency, which would likely lead to a sub-\% systematic effect based on \cite{chargedHadroninPP2010}. Major systematic errors probably arise from the assumption that the vertex reconstruction efficiency can be taken independently in events with multiple vertices. For this reason, we assign a rather safe 1\% absolute systematic till Pythia studies can be run. 
 
@@ -34,6 +35,13 @@ The toy Monte-Carlo model described in Section~\ref{sec:vertex_merging} has seve
     \item The algorithm used for merging vertices. Two of the proposed algorithms were compared and are consistent throughout the whole $N_\text{gen}^\text{obs}$ range, no systematic effect is visible. No systematic uncertainty is assigned due to this choice.
 \end{enumerate}
 The total systematic uncertainty is calculated as the quadratic sum of these sources and equals $0.4\%$. % 0.43 to be precise
+\end{comment}
+\section{Luminosity of $\pprefSample$}
+The luminosity of $\pprefSample$ was determined centrally it bring an uncertainty of $\delta \mathcal{L}_{pp}$ = ? \%. \blue{} Will be delivered to us by the Lumi Group. \black{}.
+
+\begin{comment}
+% commented out since the <TAA> is obtained globally
+
 \section{Glauber modeling -- $\avgNcoll$}
 Calculation of $\avgNcoll$ within the Glauber model is associated with the following systematic uncertainties:
 \begin{enumerate}
@@ -52,6 +60,7 @@ Each parameter was varied around its central value, and the average of absolute 
     \label{fig:systematics_ncoll_oo_nene}
 \end{figure}
 After summing up the geometry choice and the parameter variation systematics, the uncertainty on $\avgNcoll$ reaches $4.3\%$ for O.
+\end{comment}
 
 \section{Contamination of $\Oa$ and $\alal$}
 There are three sources of systematic on correction for the $\OO$ contamination by $\Oa$ and $\alal$ collisions:
@@ -80,9 +89,18 @@ There are three sources of systematic on correction for the $\OO$ contamination 
 
 %The ratio of $\tpv(t_1)$ at any given time to $\tpv(0)$ (representing start of the run where no contamination is present) should be equivalent to same ratio from MC (e.g. HIJING), as all the efficiencies and corrections cancel, if we assume conditions to be constant throughout the run. The same argument applies to $\avgtpv$. Therefore, to quantify conservatively the effect of choosing cuts for $\tpv,$ one can plot the above-mentioneded ratios as a function of time (lumiblock) and compare them ({\red e.g., fit absolute deviations with a constant function and quote it as systematic})
 
-\section{Difference in conditions}
-{\blue Will be determined from a comparison of full-sim Pythia MCs with different conditions}
-\section{Gap cut} 
-{\blue Will be determined when MC Pythia samples for various diffraction modes are available, based on variations of the cut value and the mismatch of the inclusive MC on the data $\forwardgap$ distributions.}
+\section{Vertex counting in the \OO sample}
+Cleaning the \OO sample produces a systematic error based on the values of $\lukesvar$. {\blue Will be determined.} \black{}
 
+\section{Difference in conditions}
+{\blue Will be determined from a comparison of Angantyr with different conditions} \black{}
+
+\section{Track momentum resolution} 
+{\blue Will be determined by taking a ration between smeared $\pprefSample$ and \OO spectra.} \black{}
+
+\section{High-\pT leptons removal} 
+{\blue Will be determined.} \black{}
+
+%\section{Gap cut} 
+%{\blue Will be determined when MC Pythia samples for various diffraction modes are available, based on variations of the cut value and the mismatch of the inclusive MC on the data $\forwardgap$ distributions.}
 

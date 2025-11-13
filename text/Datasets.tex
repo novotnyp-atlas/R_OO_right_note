@@ -1,28 +1,70 @@
 \chapter{Datasets and simulations}
 \label{chap:dataset}
 \section{Datasets}
-Data samples analyzed are listed in Table~\ref{tab:comb}, 
+In the $\pprefSample$ same both MinBias (MB) and Main streams containing MB and jet triggers are used to extend the kinematic reach, matching the kinematic reach of \OO spectrum and bringing in as small statistical error as possible. In \OO and \NeNe, all triggers were present in the MB stream, and the full available statistic is analyzed. The triggers used to select studied events were used to maximize the statistics and are listed in Table~\ref{tab:comb}. The data analyzed were reconstructed in the HIP reconstruction mode. 
+
 \begin{table}[!h]
 \begin{center}
 \renewcommand{\arraystretch}{1.5} % Increase the height of all rows
 \setlength{\tabcolsep}{2.5pt} % Adjust this value to shrink or expand column spacing
-\begin{tabular}{ccccc}
-System & $\sqn\ [\TeV]$ & Trigger & Release \\ \hline
-$\pprefSample$  & 5.36 & $\pprefMBtrig$ & f1529\_m2259  \\
-$\OO$  & 5.36 & $\pprefMBtrig$ & unknown  \\
-$\NeNe$  & 5.36 & $\pprefMBtrig$ & unknown  \\
+\begin{tabular}{cccccc}
+System & $\sqn\ [\TeV]$ & Stream & Trigger & Release \\ \hline
+$\pprefSample$  & 5.36 & MinBias & $\pprefMBtrig$ & f1529\_m2259  \\
+$\pprefSample$  & 5.36 & Main & HLT\_j30a\_L1jTE20 & f1529\_m2259  \\
+$\pprefSample$  & 5.36 & Main & HLT\_j40\_L1jJ40 & f1529\_m2259  \\
+$\pprefSample$  & 5.36 & Main & HLT\_j60\_L1jJ50 & f1529\_m2259  \\
+$\pprefSample$  & 5.36 & Main & HLT\_j85\_L1jJ50 & f1529\_m2259  \\
+$\pprefSample$  & 5.36 & Main & HLT\_j100\_L1jJ60 & f1529\_m2259  \\
+$\OO$  & 5.36 & MinBias & HLT\_mb\_sptrk\_L1TRT\_FILLED & f1606\_m2272  \\
+$\OO$  & 5.36 & MinBias & HLT\_j20\_ionp\_L1jJ10 & f1606\_m2272  \\
+$\OO$  & 5.36 & MinBias & HLT\_j40\_ionp\_L1jJ20 & f1606\_m2272  \\
+$\NeNe$  & 5.36 & MinBias & HLT\_mb\_sptrk\_L1TRT\_FILLED & f1606\_m2272  \\
+$\NeNe$  & 5.36 & MinBias & HLT\_j20\_ionp\_L1jJ10 & f1606\_m2272  \\
+$\NeNe$  & 5.36 & MinBias & HLT\_j40\_ionp\_L1jJ20 & f1606\_m2272  \\
 \end{tabular}
 \end{center}
 \caption{Data samples}
 \label{tab:comb}
 \end{table}
-$\pprefSample$ data are taken from the MinBias stream reconstructed in the HIP mode. For the \OO and \NeNe data-taking, only one stream and reconstruction in the HIP will likely be taken. \blue{There are ongoing studies on the jet triggers, in case it would be needed, and possible to prolong the $\pp$ spectrum. The decision will depend on the actual reach of the collected \OO data.} \black{}
 
-% threshold of jet triggers: https://indico.cern.ch/event/1505211/contributions/6340013/attachments/3001808/5290091/Trigger_99_per_efficiency_tresholds_PbPb_and_pp_2024.pdf
-
+% waiting for Angantyr
 
 \section{MC samples}
-To obtain the correction factor $C^{pp/\text{AA}}(p_T, \eta)$ and for the supporting studies of corrections and cuts, MC Pythia 8.308 samples were generated in three groups. The first group consists of various diffraction modes without pile-up (PU) simulation using $\mathrm{pp_{ref}}$ conditions. The second group is only the non-diffractive MC with PU using $\pprefSample$ conditions. The final group is again only one sample, non-diffractive MC without PU using pre-\OO run conditions. The samples are listed in Table~\ref{tab:comb}.
+To obtain the correction factor $C^{pp/\text{AA}}(p_T, \eta)$ and for the supporting studies of corrections and cuts, Angantyr samples $\pprefSample$ and pre-\OO run conditions were generated.
+
+The additional MCs to be used in the supporting studies were Pythia 8.308 dijet samples with $\pprefSample$ conditions and $\sqn$ = 5.36~TeV, they are listed in Table \ref{tab:pythia}.
+
+\begin{table}[!h]
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Increase the height of all rows
+\setlength{\tabcolsep}{2.5pt} % Adjust this value to shrink or expand column spacing
+\begin{tabular}{p{0.3\linewidth} p{0.3\linewidth}p{0.3\linewidth}}
+\text{\centering $\mathrm{N_{evt}} [10^6]$} & \text{\centering $\sigma [\inb]$} & \text{\centering $\epsilon_{\mathrm{fil}}$} \\ \hline 
+\multicolumn{3}{c}{mc23\_5p36TeV.801165.Py8EG\_A14NNPDF23LO\_jj\_JZ0.recon.AOD.e8551\_s4521\_s4483\_r16578} \\
+15 & 6.8260 $\cdot 10^7$ & 9.9342 $\cdot 10^{-1}$ \\ \hline
+\multicolumn{3}{c}
+{mc23\_5p36TeV.801166.Py8EG\_A14NNPDF23LO\_jj\_JZ1.recon.AOD.e8551\_s4521\_s4483\_r16578} \\
+15 & 3.3878 $\cdot 10^7$ & 1.8563 $\cdot 10^{-2}$ \\ \hline
+\multicolumn{3}{c}
+{mc23\_5p36TeV.801167.Py8EG\_A14NNPDF23LO\_jj\_JZ2.recon.AOD.e8551\_s4521\_s4483\_r16578} \\
+15 & 7.0547 $\cdot 10^5$ & 6.5344 $\cdot 10^{-3}$ \\ \hline
+\multicolumn{3}{c}
+{mc23\_5p36TeV.801168.Py8EG\_A14NNPDF23LO\_jj\_JZ3.recon.AOD.e8551\_s4521\_s4483\_r16578} \\
+15 & 5.3640 $\cdot 10^3$ & 7.560 $\cdot 10^{-3}$ \\ \hline
+\multicolumn{3}{c}
+{mc23\_5p36TeV.801169.Py8EG\_A14NNPDF23LO\_jj\_JZ4.recon.AOD.e8551\_s4521\_s4483\_r16578} \\
+9.5 & 3.1658 $\cdot 10^1$ & 6.9140 $\cdot 10^{-3}$ \\ \hline
+\multicolumn{3}{c}
+{mc23\_5p36TeV.801170.Py8EG\_A14NNPDF23LO\_jj\_JZ5.recon.AOD.e8551\_s4521\_s4483\_r16578} \\
+9.5 & 2.8793 $\cdot 10^{-1}$ & 4.3236 $\cdot 10^{-3}$ \\ 
+\end{tabular}
+\end{center}
+\caption{Pythia 8.308 dijet samples at 5.36~TeV with $\pprefSample$ conditions}
+\label{tab:pythia}
+\end{table}
+
+ \begin{comment}
+ were generated in three groups. The first group consists of various diffraction modes without pile-up (PU) simulation using $\mathrm{pp_{ref}}$ conditions. The second group is only the non-diffractive MC with PU using $\pprefSample$ conditions. The final group is again only one sample, non-diffractive MC without PU using pre-\OO run conditions. The samples are listed in Table~\ref{tab:comb}.
 
 \begin{table}[!h]
 \begin{center}
@@ -44,3 +86,4 @@ Py8EG\_A3\_NNPDF23LO\_minbias\_ND  & 1 mio & 801451 (same evgen)  \\
 \caption{MC Pythia 8 samples}
 \label{tab:comb}
 \end{table}
+\end{comment}

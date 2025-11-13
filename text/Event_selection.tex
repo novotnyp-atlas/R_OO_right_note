@@ -1,24 +1,212 @@
 \chapter{Event selection}\label{chap:event_sel}
+
+
+
+{\red the structure of this section needs to be different\\
+1. start with the GRL \\
+2. then discuss triggers. Trigger efficiencies, prescales / weights, etc, are corrections that you discuss when explaining triggers, but 'weighting' is merely a correction technique, and it shall not be a section.\\
+3. Then explain the gap cut, which was reduced to a hit in the FCal. 
+4. If you have any other rejections there, for example, the second band in $n_{ch}$ vs. FCal plot, it also goes here. \\
+5. Here also goes the PU cleanup/rejection. It is 100\% event selection.\\
+6. Combining jet triggers samples together is also an event selection. \\
+7. Then discuss the centrality cuts. Centrality is a part of the event selection. \\
+
+In each of these items, you should follow the same scheme. Start by explaining what it is, why it is needed, and how it is implemented. Give all details, for example, explain how the efficiencies are obtained and how they are implemented. If any corrections are required, detail them in these sections. In each section, you should discuss the sources of statistical and systematic uncertainties. The Uncertainty section is a mere summary of all individual uncertainties taken from sections around the note and put together in a consistent manner, then propagated onto different observables.
+}
+
+
+
+
 \section{Good Run Lists}
-Events to be analyzed must be present on the good run lists (GRLs) as defined by Table~\ref{tab:GRLs}. Listed luminosities of the samples were determined using Lumicalc (OflLumi-Run3-005) for $\pprefMBtrig$. In addition, event selection requires no error codes from the LAr, SCT, and Tile systems. Finally, events with noise bursts are rejected.
+Events to be analyzed must be present on the good run lists (GRLs) as defined by Table~\ref{tab:GRLs}, along with the sample luminosities. The GRLs and $\mathcal{L}$ ({\red{using OflLumi-Run3-008 calibration}}) are based on the TWiki produced by the data quality \cite{GRL_Twiki}. In addition, event selection requires no error codes from the LAr, SCT, and Tile systems. Finally, events with noise bursts are rejected.
 
 \begin{table}[!h]
 \begin{center}
 \begin{tabular}{c|c|c}
-data sample & GRL & $\mathcal{L} [\inb]$ \\ \hline
-$\pprefSample$  & $\mathrm{physics\_2024ppRef\_25ns.xml}$ & 7.75 \\
-$\OOSample$  & GRLname.xml \\
-
-$\NeNeSample$  & GRLname.xml \\
+data sample & GRL & $\mathcal{L}$ \\ \hline
+$\pprefSample$  & $\mathrm{physics\_2024ppRef\_25ns.xml}$ & {\red 400} \ipb \\
+$\OOSample$  & physics\_HI2025\_50ns\_OO.xml & 8.0 \inb  \\
+$\NeNeSample$  & physics\_HI2025\_50ns\_NeNe.xml & 1.3 \inb \\
 \end{tabular}
 \end{center}
 \caption{Table of the GRLs used}
 \label{tab:GRLs}
 \end{table}
 
+\section{Event weighting}
+The use of various triggers invokes the urge to stitch the track spectrum based on the trigger that has fired the event. We are following the approach used previously by the CMS Collaboration \cite{CMS:2015ved, CMS:2016xef}. First, one determines the efficiency curves of jet triggers in the samples. The efficiency curves for the $\pprefSample$ are displayed in Figure~\ref{fig:ppref_trig_eff}, for \OO and \NeNe in Figure~\ref{fig:OO_trig_eff}. The points where a jet reaches at least 99\% efficiency are set to be a threshold value. An exception is the first threshold, which is set at the 80\% efficiency of the lowest-\pT trigger. The triggers, with determined thresholds and reference triggers, are listed in Table~\ref{tab:trigger_ppref} for $\pprefSample$ and in Table~\ref{tab:trigger_OO} for \OO and \NeNe.
 
-\section{$\pprefSample$ data}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{images/pp_trig_effs.pdf}
+    \caption{Efficiency curves of the triggers used to obtain the full $\pprefSample$ charged hadron spectrum}
+    \label{fig:ppref_trig_eff}
+\end{figure}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{images/OO_trig_effs.pdf}
+    \caption{Efficiency curves of the triggers used to obtain the full \OO, \NeNe charged hadron spectrum}
+    \label{fig:OO_trig_eff}
+\end{figure}
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{c|c|c}
+trigger & reference & 99 \% threshold [GeV] \\ \hline
+HLT\_j30a\_L1jTE20 & $\pprefMBtrig$ & 36 (80 \%) \\
+HLT\_j30a\_L1jTE20 & $\pprefMBtrig$ & 56 \\
+HLT\_j40\_L1jJ40 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 76 \\
+HLT\_j60\_L1jJ50 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 87 \\
+HLT\_j85\_L1jJ50 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 92 \\
+HLT\_j100\_L1jJ60 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 114
+\end{tabular}
+\end{center}
+\caption{Trigger thresholds in $\pprefSample$ sample}
+\label{tab:trigger_ppref}
+\end{table}
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{c|c|c}
+trigger & reference & 99 \% threshold [GeV] \\ \hline
+HLT\_j20\_ionp\_L1jJ10 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 27 (80 \%) \\
+HLT\_j20\_ionp\_L1jJ10 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 40 \\
+HLT\_j40\_ionp\_L1jJ20 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 58 \\
+\end{tabular}
+\end{center}
+\caption{Trigger thresholds in \OO and \NeNe sample}
+\label{tab:trigger_OO}
+\end{table}
+
+\newpage % temporary
+
+In any event, the 'AntiKt4HI' jet collection is taken and cleaned such that:
+\begin{itemize}
+  \item jets must be placed within |$\eta$| < 2.8 of the detector,
+  \item jet timing variable must be within 12.5 ns to remove out-of-time pile up.
+\end{itemize}
+The distributions of the jet $\eta$ and the timing of the leading jets are shown in the MinBias trigger and jet trigger samples of the $\pprefSample$ sample in Figure \ref{fig:jet_timing} and TBA. The requirement of 12.5 ns removes 31.4 \% of leading jets in the MinBias-triggered sample - there, the jets are removed, but the event is kept. In the jet-triggered events, only 0.3 \% leading jets are removed by the timing cut - there, the event should be removed. 
+
+% eta will be added late
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/jets_timing.png}
+    \caption{MB-triggered timing (in red) and jet-triggered timing (in black) for the leading jets in $\pprefSample$}
+    \label{fig:jet_timing}
+\end{figure}
+
+
+\blue{|$\eta$| dist to be added.} \black
+
+Using the collection of well-defined jets, the event is associated with one of the triggers based on the \pT of the leading jet in the event. If the trigger has not fired, the event is discarded, and the next event is about to be processed. If the given trigger has been fired, the weight of the event is the trigger prescale. In case of the region covered by the first jet trigger, the weight is $w = \frac{\mathrm{prescale}}{\epsilon(\pT)}$, where $\epsilon(\pT)$ is the trigger efficiency as a function of the leading jet \pT. All tracks present in the event will have the same weight, the weight of the event, if they pass the track selection criteria discussed in the next chapter. 
+
+\section{Event counting in \OO collisions}
+\label{chap:MBdataselection}
+\subsection{General considerations}
+Since the analysis relies on the event counting in the \OO data sample, it needs to be determined with minimal uncertainty. Event counting does not necessarily affect the track counting in them, as the tracks can be counted regardless of the vertices. That is discussed later in Section~\ref{sec:track_counting}. Rejection of photonuclear events is explained in Section~\ref{sec:gap_cut}. This section deals with a) inflation of event counts due to incorrectly split vertices and b) loss of the event counts due to merging of vertices. The same issue is addressed in the framework of the flow measurement analysis in Section~2.3 of the Reference~\cite{Mohapatra:2930965}, however, the approach taken here is somewhat different.
+
+\OO event counting in this analysis is the following. Events without vertices are rejected from the analysis. If an event has only one vertex, such an event is always counted. If there are more vertices in the event they are filtered based on the vertex $z$-variance \sz value. Vertices with $\sz<0.005$~mm$^{2}$ are considered corresponding to real collisions. 
+Events with more than a single vertex are rejected from the analysis. Since the average number of collisions per bunch crossing in \OO and \NeNe data taking was $\langle\mu\rangle\approx0.25$, less than 12\% of good events are rejected. Remaining events are counted and corrected for the number of merged vertices, determined from the data. The number of such events is counted as the number of \OO (\NeNe) collisions.
+
+The merging of two vertices is understood as a process in which two collisions occur close in space and result in a single vertex. A characteristic dimension is the width of the TTVM distribution (\zst), which does not depend on multiplicity. Therefore, collisions of any multiplicity would merge when they are close to each other, and in the second order, when one of the collisions is weak, its vertex can merge at somewhat larger distances. This process does not introduce a significant uncertainty in the event count, as the number of merged collisions can be corrected for from the data, and weaker collisions, which are likelier to merge, belong to peripheral collisions and have fewer charged hadrons in them. 
+
+By splitting a vertex, we understand a process where a single collision results in two vertices and, therefore, would be discarded from the analysis. This may result in significant uncertainty, because splitting is likelier for high-multiplicity collisions, and taking them out of the analysis would modify the spectrum. Based on these considerations, we conclude that a more stringent cut than $\sz<0.02$~mm$^{2}$ used in~\cite{Mohapatra:2930965} is appropriate here.
+
+\subsection{Event selection criteria}
+
+A fraction of the \OO data in Run number 501879 was taken at a very low instantaneous luminosity $\mu<0.02$, which presents a valuable sample to study the luminosity dependence of vertex splitting. The left panel of Figure~\ref{fig:lumi_dependence}  
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\linewidth]{images/nvert_vs_mu.pdf}
+    \includegraphics[width=0.49\linewidth]{images/coefficients.pdf}
+    \caption{Left: Number of reconstructed vertices as a function of instantaneous luminosity for different values of \sz cut fitted to a parabolic function. Right: coefficients of a parabolic fit as a function of \sz. Black markers correspond to the constant coefficient less one and red markers correspond to the sum of linear and quadratic coefficients (also shown separately with open markers) multiplied by $\mu=0.25$. the middle of the bulk of the data range in the left panel.}
+    \label{fig:lumi_dependence}
+\end{figure}
+shows the number of reconstructed vertices that satisfy the conditions of different \sz selections. The data is fit to a parabolic function, whose second coefficient is relatively unimportant, and the coefficients extracted from the fit are shown in the right panel of Figure~\ref{fig:lumi_dependence}. The constant coefficient reduced by one is shown as is (black points), and the linear and quadratic coefficients are multiplied by $\mu$ and $\mu^{2}$ respectively at the point $\mu=0.25$. They correspond to the number of extra vertices found in collisions at this instantaneous luminosity and are shown with full red markers.
+
+This plot uses an uncalibrated value of Instantaneous luminosity \verb|actualLumi_PerXing| {\red $\leftarrow$ check}, therefore its value can be inaccurate, and does not fully determine the number of vertices that shall correspond to it. However, assuming it is accurate within a dozen percent and Poisson statistics, one shall expect that $\mu=0.02$ shall result in 1.01 vertices and $\mu=0.25$ in 1.12 vertices. $\mu\rightarrow0$ shall result in 1 reconstructed vertex. \textit{i.e.} the constant coefficient of the fit shall be equal to zero:  $p_{0}-1=0$. This condition only holds for $\sz<0.005$~mm$^{2}$, and above that value, there is a probability that a single event produces more than 1 vertex. At $\sz<0.02$~mm$^{2}$, this probability is about 3\%.
+
+Contribution proportional to $\mu$ diminishes with \sz cut, and at 0.005, it adds approximately 0.09 vertices per event, whereas with very loose (large) cuts, they add 0.14. It will be shown later that not all of these extra 0.05 vertices, recovered by loosening the cut, are actually real. Nevertheless, loss of a real vertex is a lesser problem for the analysis than the splitting; therefore, $\sz<0.005$~mm$^{2}$ is taken in the analysis, and vertex properties are studied around this value. 
+
+To further understand how the vertices are split, Figure~\ref{fig:split_vertices} shows 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\linewidth]{images/varz.png}
+    \caption{Distance between two reconstructed vertices as a function of the square root of the variance of the second vertex. The left panel shows the distribution at a luminosity $\langle\mu\rangle\approx0.16$ and the Middle panel at $\langle\mu\rangle\approx0.02$. The right panel shows the difference between the two distributions, which does not depend on $\mu$. The vertical scale is identical in all three distributions.}
+    \label{fig:split_vertices}
+\end{figure}
+distance between reconstructed vertices as a function of $\sigma_{z}$ of the second (weaker) vertex. The left panel shows events taken at the average luminosity during the data taken, and the middle panel shows events taken at low (approximately 8 times lower) luminosity. The distributions are normalized per event. Comparing the two distributions, one can see that the area at $\sigma_{z}<0.07$~mm changes with luminosity, whereas above that value the change is weaker. By scaling the average-$\mu$ distribution by the integral over the area at low $\sigma_{z}$ and matching it to the same in the middle panel, one can subtract one from another to isolate the area that does not depend on $\mu$. This is shown in the right panel of the same Figure. To the first order, events that are above $\sigma_{z}<0.07$~mm do not depend on $\mu$, and are split off the primary vertex.
+
+\subsection{Range of applicability and the uncertainties}
+Since \sz depends on the number of tracks in the collision, selecting this parameter affects \ntrk distribution. For further study, only good tracks passing quality selection, pointing to the vertex $|d_0/\sigma(d_0)|<4$, with $\pT>0.4$~GeV and $|\eta|<2.5$ are considered. Tracks are associated with selected vertices based on the minimal distance between the vertex and the track origin estimator in $z$-direction: $\omega_{0} = (z_0-\zvtx)sin(\theta)$.
+
+\sz-dependence of \ntrk is shown in Figure~\ref{fig:vert_cut_uncut}. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\linewidth]{images/first_vertex_uncut.pdf}
+    \includegraphics[width=0.49\linewidth]{images/first_vertex_cut.pdf}
+    \caption{Left: \ntrk associated with the first vertex after event selection (\textit{i.e.} including single vertex events without \sz). These distributions build the upper family of curves. Curves of the same color shown below are the number of tracks in other vertices. Right panel: \ntrk in single-vertex events at low $\mu$, and with the \sz cut applied on them.}
+    \label{fig:vert_cut_uncut}
+\end{figure}
+The left panel shows the \ntrk associated with the first selected vertex (upper family of curves), and \ntrk associated with over vertices (lower family of curves), depending on the \sz selection cut. Events in the other vertices have fewer tracks, because the vertices in events are ordered in $\sum\pT^{2}$ of tracks in the vertex. Both distributions visibly depend on \sz selection. It is not only that the number of events with one vertex increases, but also that the shape of their distribution changes. This is not an effect of merging, but is due to the fact that \sz of an incorrectly split vertex depends on the \ntrk in the vertex that it splits off. If such an event is removed from the analysis due to an insufficiently restrictive \sz cut, it may modify the multiplicity distribution of the accepted events.
+
+The right panel shows the \ntrk distribution of the left panel, where the \sz-cut is applied also on the primary vertex, although it is not done in the analysis event selection. The purpose of doing it here is to show that the \sz cut affects \ntrk in the event. For example, the $\sz=0.005$~mm$^{2}$ selection used in this analysis is not fully sensitive to the PU collision vertices with fewer than 17 tracks. They could be missed, and their tracks added to the analysis. This is why at least a mild $\omega_{0} = (z_0-\zvtx)sin(\theta)$ selection is necessary to eliminate the majority of such tracks.
+
+%Another important observation following from Figure~\ref{fig:vert_cut_uncut} is that the shape of the \ntrk distributions selected for the analysis depends on \sz not only at low \ntrk but also above up to the very central collisions. To demonstrate it 
+Studies performed above show that getting the correct shape of the \ntrk distribution with \sz cuts is not straightforward, therefore, another approach was used. Events with low average instantaneous luminosity ($\langle\mu\rangle\approx0.02$) are selected. Events must be taken by the MB trigger, the PV must be within 150 mm of the center of ATLAS, and events shall satisfy the FCAL MB selection. \ntrk distribution in these events is shown with the black line in the left panel of Figure~\ref{fig:baseline}. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.49\linewidth]{images/baseline.pdf}
+    \includegraphics[width=0.49\linewidth]{images/flattening.pdf}
+    \caption{Left: \ntrk distributions measured at low multiplicity. 
+    Right panel: Ratios of the \ntrk distributions in single-vertex events at low $\mu$ with different \sz selection cuts.}
+    \label{fig:baseline}
+\end{figure}
+The magenta line is constructed from the black distribution when the events with the single vertex after $\sz<0.005$~mm$^2$ cut are subtracted from it. It represents the PU events. This distribution nicely follows the high-\ntrk tail of the black line, but at low-\ntrk is affected by the \sz cuts. Instead of relying on the magenta curve, the black distribution has been convolved with the same distribution obtained without the FCAL MB selection condition, and this is shown with a blue line. The integral of the blue line is normalized to 0.9\% of the black curve integral, which is reasonable for $\langle\mu\rangle\approx0.02$ value, and agrees with the magenta curve in the region $300<\ntrk<500$. At the high-\ntrk end, the blue and magenta lines diverge, the reason for which is not yet understood. At the low-\ntrk they also diverge as expected due to the \sz cut. Subtracting PU distribution from all-track distribution represents the baseline distribution on no-PU events, shown with brown markers. Distributions with other \sz cuts are compared to this baseline, as shown in the right panel of the same figure.
+
+Curves shown here demonstrate different behavior. For very stringent \sz-cuts ($\sz<0.0005$ and smaller), they rise due to PU entering event selection. This behavior is characteristic of the upper two curves. At very relaxed \sz cut ($\sz<0.02$ and higher), curves develop irregular behavior. For the intermediate \sz cut values, curves scale with the baseline, except that for $\ntrk<100$, but do not change the shape.
+
+To understand how the \sz cut selection handles the PU, one shall investigate the vertex merging. Distributions shown in Figure~\ref{fig:split_vertices} below $\sz=0.005$ are projected onto $y$-axis and plotted in Figure~\ref{fig:dhr}. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.55\linewidth]{images/dhr.pdf}
+    \caption{Distance between the first and any other vertex in the event, measured at different luminosities. "mixed" is constructed by taking the first vertex from a different event. All distributions are normalized at $|\Delta z|>50$~mm.}
+    \label{fig:dhr}
+\end{figure}
+Magenta distribution represents the distance between two vertices without merging. To construct it, the vertices were taken from different events. The other two curves are shown for low and average luminosity events. The loss due to merging can be estimated at 1.7\% and 2.3\% for those two curves, respectively. This means that at a luminosity $\mu$ fraction of merged vertices can be estimated as $0.023\times\mu/2$, and for an average value of $\langle\mu\rangle=0.16$, about 0.17\% of PU events would remain in the sample.
+
+Figure~\ref{fig:all_mu_pu} shows \ntrk distributions taken during the \OO run 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.55\linewidth]{images/flattening_all_mu.pdf}
+    \caption{Ratios of \ntrk distributions at different \sz selection cuts taken during the \OO run and the baseline distribution. Gray lines are estimates for 0.12\% and 0.23\% of the PU events due to the vertex merging.}
+    \label{fig:all_mu_pu}
+\end{figure}
+divided by the baseline distribution from the left panel of Figure~\ref{fig:baseline}. The curves correspond to different \sz cut selections. Two gray lines shown in the plot correspond to 0.12\% and 0.23\% of the PU contributions follow the data at $\sz=0.007$~mm$^{2}$. These numbers are selected rather broadly, because $\mu$ values are not calibrated. 
+
+Based on the results, shown in right panel of Figure~\ref{fig:baseline}, and in Figure~\ref{fig:all_mu_pu} the ratios of the \ntrk distributions obtained with the $\sz<0.005$~mm$^{2}$, when corrected for $0.023\times\mu/2$ residual PU contribution due to vertex merging, are consistent with the baseline well within 0.5\% for $20<\ntrk<350$. 
+
+
+\textbf{Event selection in \OO data} is as follows. 
+\begin{itemize}
+\item[$\bullet$] Events should be taken by the MB or jet trigger. MB triggers are \verb|TRT_L1 etc| {\red $\leftarrow$ complete}.
+\item[$\bullet$] A small fraction of events with an irregular number of tracks $\ntrk>4000\times \mathrm{FCAL} + 70$ are removed from the sample. {\red $\leftarrow$ check how one shall write FCAL}.
+\item[$\bullet$] Events satisfy the MB selection criterion, i.e., have FCAL energy above {\red $\leftarrow$ complete}.
+\item[$\bullet$] Only events with the primary vertex reconstructed within $\pm150$~mm from the center of the IR, are accepted.
+\item[$\bullet$] All non-primary vertices in the event, if any, should have variance $\sz>0.005$~mm$^{2}$.
+\item[$\bullet$] Tracks in the accepted events shall be matched to the vertex within $|\omega_{0}|<X$~mm {\red $\leftarrow$ to be decided}.
+\item[$\bullet$] Number of events shall be corrected for the vertex merging by increasing their counts with the number estimated as $0.023\times\mu/2$.
+\item[$\bullet$] For events with $20<\ntrk<350$, a 0.3\% $1\sigma$ systematic uncertainty shall be assigned to the event count number. The track selection is explained above.
+\item[$\bullet$] Events with lower and higher \ntrk may be affected by the pileup to a larger extent, and if they constitute a significant fraction of the analyzed sample, shall be investigated separately
+\end{itemize}
+
+{\blue I would write here relevant numbers, the raw, selected, and corrected number of events if possible.\\
+we shall add how we handle jet triggers.
+}
+
+\begin{comment}
 For pile-up (PU) effects studies, leveled subsets of low-$\mu$ and high-$\mu$ present in the run 488573 were selected. Otherwise, the full sample following the GRL file listed in the Table~\ref{tab:GRLs} is used for the analysis. LBs present both on the GRL and having a low-$\mu$ and high-$\mu$ setup are in Table~\ref{tab:PU_samples}.
 
 \begin{table}[!h]
@@ -79,3 +267,4 @@ The Figure~\ref{fig:trigger_diffraction modes} shows the distribution of $\forwa
 One can notice that the cut at $\forwardgap > 3.5$ removes the majority of the single diffractive events. The fraction of single diffractive events with $\forwardgap < 3.5$ accounts for less than 4.4 \% of the events. 
 
 \blue{The gap cut is not used so far in the final selection till this study concludes. To be studied further with full PYTHIA 8 production.} \black{} 
+\end{comment}

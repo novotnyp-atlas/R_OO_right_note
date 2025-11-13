@@ -8,6 +8,10 @@ For events with fewer tracks, there is no reference. However, events with 0 (loo
 
 In case of events with (loosePrimary + d0) 1 track - making up 0.7\% of events in the studied sample - there are 90 \% events with 0 vertices, and the remaining 10 \% of events have 1 vertex. Again, the overall contribution of these events to the spectrum is negligible, given the average number of vertices is 2.5 and the average number of good tracks is 66. Thus, no correction on the trigger efficiency is applied.
 
+% in pp, then one will determine it also in OO
+\blue{} The trigger efficiency for the primary MB trigger for \OO and \NeNe was not yet determined. \black{}
+
+\begin{comment}
 \section{Vertex reconstruction efficiency}
 The vertex reconstruction efficiency $\epsilon_{\mathrm{vtx}}$ is determined in a data-driven approach as the ratio of triggered events with a reconstructed vertex to the total number of triggered events as a function of the number of tracks in our fiducial space using the low-$\mu$ data. The measured efficiency is plotted on Figure~\ref{fig:vrtx_eff}. Efficiency is shown for various diffraction modes based on the $\forwardgap$ cut as a function of the number of tracks in the analysis fiducial space. Inclusively, the efficiency is $\epsilon_{\mathrm{vtx}} = 95.7\%$. Since the $\RAA$ is measured using the number of vertices, this correction must be applied to every vertex. One can correct for $\epsilon_{\mathrm{vtx}}$ differentially based on $\ntrk$, when retrieving events with 1 vertex reconstructed as events with 0 vertices. However, in the case of higher $\mu$, the only option is to correct the total number of vertices in the analysis $\nvtx$. This is possible if one considers vertex reconstruction independent, and thus, its efficiency is also independent. 
 
@@ -141,12 +145,13 @@ After running the merging algorithm, the number of observed vertices is counted 
 and equal to 1.052 in $\langle \mu \rangle \sim 4.0$ data. {\blue To be updated -- calculated as a function of $\mu$.} 
 
 % {\red a logical end to this section would be Figure~\ref{fig:tpvreco_bothmu}, and discussion of $N_{\mathrm{evt}}$ correction followed by the discussion of $\omega$ cuts, see my text around that figure. But to do it right, the first thing is to work out the correction not for a single $\mu$ but for any $\mu$ up to say $\mu$ of 5 and plot it as a curve.}
+\end{comment}
   
 \section{Correction for track acceptance difference between 2024 and 2025 conditions}
-{\blue Will be determined by comparing full-sim Pythia MCs with $\pprefSample$ and before-$\OO$ conditions.}
+{\blue Will be determined by comparing full-sim Angantyr MCs with $\pprefSample$ and before-$\OO$ conditions. Currently running on the GRID.}
 
-\section{Correction of $\avgNcoll$}
-Although the \Ncoll needed for \RAA is extracted from the Glauber model, one shall take into account that the MinBias sample is not fully inclusive, and some losses are anticipated for events with low multiplicity.
+\section{Correction of $\avgTAA$}
+Although the \TAA needed for \RAA is extracted from the Glauber model, one shall take into account that the MinBias sample is not fully inclusive, and some losses are anticipated for events with low multiplicity.
 {\blue Will be determined when $\OO$ data is available.}
 % {\red why does one need oxygen data for that? one can do it by convolving \pp. Generally, I think this  discussion should go to \Ncoll calculations using Glauber}
 
@@ -185,7 +190,7 @@ Finally, the mean of the $\Npart$ and $\ntrk$ histograms was calculated. The mea
 
 \begin{figure}[h]
     \centering    
-    \includegraphics[width=\linewidth]{images/mixing_scan_all_observables.png}
+    \includegraphics[width=0.7\linewidth]{images/mixing_scan_all_observables.png}
     \caption{Average of $\Npart$ and $\ntrk$ normalized on the pure oxygen values as a function of the ratio between the probability (number) of parasitic and target events. Vertical dashed lines correspond to 5, 10, and 20 \% of $f_{\mathrm{\alpha}}$ beam contamination}
     \label{fig:corr_norm}
 \end{figure}
@@ -193,7 +198,7 @@ Finally, the mean of the $\Npart$ and $\ntrk$ histograms was calculated. The mea
 One can see in Figure~\ref{fig:corr_norm} the difference between $\Npart$ and $\ntrk$ scaling, which requires further investigation. The difference between $\Npart$ and $\ntrk$ scaling should be considered a systematic error. Fortunately, the discrepancy is smaller for smaller values of $f_{\mathrm{\alpha}}$. Another feature of the $\Oa$ collisions is that the produced particles are boosted and $\OO$ are not. In $\OO$ HIJING used, a small asymmetry of the $\eta$ distribution of the charge particles (cut on the reconstruction and acceptance limit of the ATLAS - $\pT$ > 0.1, |$\eta$| < 2.5) was observed, as shown in Figure~\ref{fig:eta_ntrk}. This phenomenon requires further investigation. 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\linewidth]{images/eta_comparison.png}
+    \includegraphics[width=0.6\linewidth]{images/eta_comparison.png}
     \caption{$\eta$ distribution of charged particles in HIJING $\OO$ and $\Oa$ (normalized on the integral), one can see the boosted distribution in $\Oa$ collisions and the so far not understood asymmetry in $\OO$ collisions.}
     \label{fig:eta_ntrk}
 \end{figure}
@@ -220,7 +225,7 @@ where $\ntrk^\text{sel}(\text{vtx}_i)$ is the number of selected tracks that pas
 One can notice that these are the track final selections without the track-to-vertex and the track-to-jet matching criteria. $\tpv$ was studied in the $\pprefSample$ sample as a function of $\mu$, vertex position $\mathrm{z_{vtx}}$, and LB number representing the temporal dependence. See Figure~\ref{fig:highmu_lowmu_tpv} for these dependencies in high-$\mu$ and low-$\mu$ samples. 
 %{\red What am I supposed to learn from these six colorful plots? A good way to decide whether you need a plot or not (and whether it is plotted correctly) is to ask yourself if you can derive any conclusion from the plot that helps the flow of convincing the reader that you are doing the right things, i.e., explaining the analysis. If not, then the plot is not needed.} Agreed, will be removed when new set of plots presented
 
-A mild increase of $\tpv$ is seen with increasing $\mu$ (when $\mu \sim 4$), which is attributed to the effect of vertex merging (see Section~\ref{sec:vertex_merging}), since a merged vertex must have more tracks, thus moving the mean. 
+A mild increase of $\tpv$ is seen with increasing $\mu$ (when $\mu \sim 4$), which is attributed to the effect of vertex merging, since a merged vertex must have more tracks, thus moving the mean. 
 %The same effect is seen on $z_\text{vtx}$ distribution ($\mu\sim 4$), where the maximum $\tpv$ is reached towards the center of the distribution, where again merging of vertices is dominant (simply because the vertex "density" there is larger).
 
 \begin{figure}[h]
@@ -276,3 +281,71 @@ the quantity $\langle \avgtpvreco \rangle$ is constant in the regime of low-$\mu
 %     \caption{Mean $\tpv$ in low-$\mu$ sample. Left: as a function of lumiblock number. Middle: as a function of $\mu$. Right: as a function of $z_\text{vtx}$}
 %     \label{fig:lowmu_mean_tpv}
 % \end{figure}
+
+%\section{Vertex counting in the \OO sample}
+%The reconstruction algorithm is optimized for the vertex building in $pp$ collisions on higher $\mu$ than heavy-ion collisions are performed. As a result, the algorithm splits a vertex into two. One can see this effect in Figure~\ref{fig:split_vertices}, as despite $\mu$ close to 0, the average number of vertices is 1.5. One could remove the additional fake-split vertex using a cut on the $\lukesvar$. Afterwards, only events with one vertex will be used. S
+
+%\begin{figure}[h]
+%    \centering
+%     \includegraphics[width=0.7\linewidth]{images/n_vert_OO.png}
+%     \caption{Profile of the number of vertices as a function of $\mu$ in run 501850 of the \OO run.}
+%     \label{fig:split_vertices}
+% \end{figure}
+
+
+\section{Difference in conditions}
+{\blue Will be determined from a comparison of Angantyr with different conditions} \black{}
+
+\section{Track momentum resolution (TMR)} 
+{\red (the section can be moved into appendix?) Will be determined by taking a ratio between smeared $\pprefSample$ and \OO spectra.} \black{} The input for the smearing is taken from the track momentum resolution simulation \cite{chargedHadronATLAS} shown in Figure~\ref{fig:tmr}.
+\begin{figure}[h]
+    \centering
+     \includegraphics[width=0.7\linewidth]{images/tmr.png}
+     \caption{Track momentum resolution simulation, taken from \cite{chargedHadronATLAS}}
+    \label{fig:tmr}
+\end{figure}
+The curves are parametrized as
+\begin{equation}
+    \text{TMR}(\pT) = p_0 + 0.001 \cdot p_1  \cdot  \pT
+\end{equation}
+and for each $\eta$ range parameters $p_0$ and $p_1$ are extracted from Figure~\ref{fig:const_tmr_smearing} (see Table~\ref{tab:tmr_parameters}).
+\begin{table}
+    \centering
+    \caption{TMR parameters}
+    \label{tab:tmr_parameters}
+    \begin{tabular}{c|c|c}
+        $\eta$ range & $p_0$ & $p_1$ [$\gev^{-1}$] \\ \hline
+        $0.0<|\eta|<0.5$ & 0.01 & 0.34 \\ 
+        $1.0<|\eta|<1.3$ & 0.02 & 0.36\\ 
+        $1.6<|\eta|<1.8$ & 0.03 & 0.35 \\
+        $2.3<|\eta|<2.4$ & 0.05 & 0.57 \\
+    \end{tabular}
+\end{table}
+
+To estimate the effect of TMR on the final result the following study was conducted:
+\begin{enumerate}
+    \item Extract $\pT$ and $\eta$ distribution of tracks.
+    \item Sample from both distributions and based on $\eta$ bin apply smearing of $\pT$ value:
+    \begin{equation}\label{eq:ptsmeared}
+        \pT^\text{smeared} \sim \frac{1}{\mathcal{N}\left(\frac{1}{\pT}, \frac{\text{TMR}(\pT, \eta)}{\pT}\right)} ,
+    \end{equation}
+    where $\mathcal{N}$ is normal distribution. Bins in $\eta$ are chosen in intervals of $|\eta|\in[0.0, 0.5, 1.3, 1.8, 2.5]$, where each bin corresponds to a curve in Figure~\ref{fig:tmr}. Bins are taken to cover the full fiducial space of the tracks. The effect of smearing the "$\delta$-function" with constant $\text{TMR}=0.1$ in Equation~\eqref{eq:ptsmeared} is demonstrated in Figure~\ref{fig:const_tmr_smearing}.
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\linewidth]{images/test_smearing.eps}
+        \hskip5pt
+        \includegraphics[width=0.45\linewidth]{images/smeared_spectra.eps}
+        \caption{Left: smearing of delta-function with constant TMR. Right: Smearing of $\pprefSample$ MB spectrum and mock-up spectrum}
+        \label{fig:const_tmr_smearing}
+    \end{figure}
+    \item Apply the same smearing procedure to the mock-up spectrum. As a proxy for the mock-up spectrum, $\pprefSample$ MB spectrum is multiplied by the $\RAA$ of 0-5\% \PbPb. The $\RAA$ of 0-5\% \PbPb was taken from \cite{chargedHadronATLAS} and it represents the strongest modification to the charged hadron spectrum measured by ATLAS. 
+\end{enumerate}
+\green{}
+The resulting double-ratio of original/mock-up over original-smeared/mock-up-smeared is presented in Figure~\ref{fig:double_ratio_tmr}. From this figure one can see about 2\% effect in the range, where the modification applied to spectrum is most prominent ($2\div \qty{30}{\gev}$, see Figure~\ref{fig:const_tmr_smearing}). 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/double_ratio.eps}
+    \caption{The double-ratio of original/mock-up over original-smeared/mock-up-smeared spectra}
+    \label{fig:double_ratio_tmr}
+\end{figure}
+\black{}
