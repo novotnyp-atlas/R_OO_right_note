@@ -146,18 +146,27 @@ and equal to 1.052 in $\langle \mu \rangle \sim 4.0$ data. {\blue To be updated 
 
 % {\red a logical end to this section would be Figure~\ref{fig:tpvreco_bothmu}, and discussion of $N_{\mathrm{evt}}$ correction followed by the discussion of $\omega$ cuts, see my text around that figure. But to do it right, the first thing is to work out the correction not for a single $\mu$ but for any $\mu$ up to say $\mu$ of 5 and plot it as a curve.}
 \end{comment}
+
+\section{Spectrum unfolding}
+{
+\green
+Both spectra \pp and \OO were unfolded using the RooUnfold package \cite{Adye2011RooUnfold}. Response matrices were generated using the MC samples listed in Tables \ref{tab:pythia} and \ref{}.
+
+}
   
 \section{Correction for track acceptance difference between 2024 and 2025 conditions}
-{\blue Will be determined by comparing full-sim Angantyr MCs with $\pprefSample$ and before-$\OO$ conditions. Currently running on the GRID.}
+{\red NOT NEEDED ANYMORE?}
 
-\section{Correction of $\avgTAA$}
+{\red Will be determined by comparing full-sim Angantyr MCs with $\pprefSample$ and before-$\OO$ conditions. }
+
+\section{Correction of $\avgTAA$ {\red remove?}}
 Although the \TAA needed for \RAA is extracted from the Glauber model, one shall take into account that the MinBias sample is not fully inclusive, and some losses are anticipated for events with low multiplicity.
 {\blue Will be determined when $\OO$ data is available.}
 % {\red why does one need oxygen data for that? one can do it by convolving \pp. Generally, I think this  discussion should go to \Ncoll calculations using Glauber}
 
 
 
-\section{Correction for transmutation}\label{sec:transmutation_correction}
+\section{Correction for transmutation {\red remove or change?}}\label{sec:transmutation_correction}
 
 If oxygen dissociates into lighter nuclei with the same rigidity ($A/Z$), these lighter ions could stay circulating in the beamline together with oxygen \cite{transmutation_lpc}. The dissociation can be caused by electromagnetic dissociation or by hadronic fragmentation processes. Certain theoretical models describing oxygen as a cluster of 4 \al particles give an exceptionally high cross section to the hadronic fragmentation in \al particles, causing contamination of the \OO collisions with \Oa and \alal collisions with increasing time of the beam circulation. Such contamination (if significant enough) would inevitably affect the measurement of $\RAA$.
 
@@ -291,10 +300,6 @@ the quantity $\langle \avgtpvreco \rangle$ is constant in the regime of low-$\mu
 %     \caption{Profile of the number of vertices as a function of $\mu$ in run 501850 of the \OO run.}
 %     \label{fig:split_vertices}
 % \end{figure}
-
-
-\section{Difference in conditions}
-{\blue Will be determined from a comparison of Angantyr with different conditions} \black{}
 
 \section{Track momentum resolution (TMR)} 
 {\red (the section can be moved into appendix?) Will be determined by taking a ratio between smeared $\pprefSample$ and \OO spectra.} \black{} The input for the smearing is taken from the track momentum resolution simulation \cite{chargedHadronATLAS} shown in Figure~\ref{fig:tmr}.

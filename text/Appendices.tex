@@ -1,32 +1,43 @@
-% \section*{Vtx distributions}
-% \begin{figure}
+The JER curves used in \pprefSample and \OO are shown in Figure~\ref{fig:app_jer_pp_oo}.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{images/jer_pp_v1.png}
+    \includegraphics[width=0.45\linewidth]{images/jer_fits_oo_v1.png}
+    \caption{JER as a function of jet \pt in \pprefSample (left) and in \OO (right)}
+    \label{fig:app_jer_pp_oo}
+\end{figure}
+They are parametrized as 
+\begin{equation}
+    \text{JER}(\pt) =  \sqrt{\left(\frac{c_1}{\pt} \right)^2  + \left(\frac{c_2}{\sqrt{\pt}} \right)^2 + c_3^2 }
+\end{equation}
+and were worked out by HI jet group.
+
+Track momentum resolution is obtained as follows. The distribution of $(\pt^\text{reco} - \pt^\text{gen})/\pt^\text{gen}$ is obtained in MC for different $\eta$ bins as a function of $\pt^\text{reco}$. Then for each $\eta$ and $\pt^\text{reco}$ bin the distribution is fitted with gaussian around 0 (see Figure~\ref{fig:tmr_slice}). 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/tmr_abs_eta1_ptreco6.png}
+    \caption{Distribution of $(\pt^\text{reco} - \pt^\text{gen})/\pt^\text{gen}$}
+    \label{fig:tmr_slice}
+\end{figure}
+The width of the gaussian is taken as TMR. TMR as a function of $\pt^\text{reco}$ is fitted with linear function of the form
+\begin{equation}
+   \text{TMR}(\pT) = p_0 +  p_1 \pT 
+\end{equation}
+which is displayed in Figure~\ref{fig:tmr_abs_all}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/tmr_abs_all.png}
+    \caption{TMR as a function of $\pt^\text{reco}$}
+    \label{fig:tmr_abs_all}
+\end{figure}
+
+% Parameters of the fit $p_0$ and $p_0$ are listed in Table~\ref{tab:tmr_par_pp} ({\red update when all JZ available and merged})
+% \begin{table}
 %     \centering
-%     \includegraphics[width=0.48\linewidth]{images/vertex_x_dist_488589.png}
-%     \hskip10pt
-%     \includegraphics[width=0.48\linewidth]{images/vertex_y_dist_488589.png}
-%     \caption{Distributions of pair-wise distances of vertices in $x$ and $y$ coordinates within the ''dip'' region of $\Delta z$ < \qty{10}{\mm}}
-%     \label{fig:app_vtx_xy}
-% \end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.49\linewidth]{images/trk_phi_cutflow_.png}
-    \includegraphics[width=0.49\linewidth]{images/trk_eta_cutflow_.png}
-    \caption{Cutflows of $\eta$ and $\phi$ distributions in $\pprefSample$}
-    \label{fig:cutflow_eta_phi}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.49\linewidth]{images/trk_d0_cutflow_.png}
-    \includegraphics[width=0.49\linewidth]{images/trk_omega0_cutflow_.png}
-    \caption{Cutflows of $d_0$ and $\omega_0$ distributions in $\pprefSample$}
-    \label{fig:cutflow_d0_omega0}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth]{images/comp_clus_seq_merger.png}
-    \caption{Ratio of observed distributions $N_\text{gen}^\text{obs}$ of number of vertices after merging for two algorithms (sequential and clustered). The ratio is consistent with 1 for fit with $\chi^2/\text{ndf}=7.5/11$ and $\text{const}=0.999 \pm0.001$}
-    \label{fig:ratio_seq_clus_merger}
-\end{figure}
+%     \begin{tabular}{c|c}
+%        0.0146  &  0.0187 \\
+%        0.000179  &  0.000291 & 
+%     \end{tabular}
+%     \caption{Caption}
+%     \label{tab:tmr_par_pp}
+% \end{table}

@@ -20,11 +20,12 @@ In each of these items, you should follow the same scheme. Start by explaining w
 \section{Good Run Lists}
 Events to be analyzed must be present on the good run lists (GRLs) as defined by Table~\ref{tab:GRLs}, along with the sample luminosities. The GRLs and $\mathcal{L}$ ({\red{using OflLumi-Run3-008 calibration}}) are based on the TWiki produced by the data quality \cite{GRL_Twiki}. In addition, event selection requires no error codes from the LAr, SCT, and Tile systems. Finally, events with noise bursts are rejected.
 
+
 \begin{table}[!h]
 \begin{center}
 \begin{tabular}{c|c|c}
 data sample & GRL & $\mathcal{L}$ \\ \hline
-$\pprefSample$  & $\mathrm{physics\_2024ppRef\_25ns.xml}$ & {\red 400} \ipb \\
+$\pprefSample$  & $\mathrm{physics\_2024ppRef\_25ns.xml}$ & 400 \ipb \\
 $\OOSample$  & physics\_HI2025\_50ns\_OO.xml & 8.0 \inb  \\
 $\NeNeSample$  & physics\_HI2025\_50ns\_NeNe.xml & 1.3 \inb \\
 \end{tabular}
@@ -33,20 +34,28 @@ $\NeNeSample$  & physics\_HI2025\_50ns\_NeNe.xml & 1.3 \inb \\
 \label{tab:GRLs}
 \end{table}
 
-\section{Event weighting}
-The use of various triggers invokes the urge to stitch the track spectrum based on the trigger that has fired the event. We are following the approach used previously by the CMS Collaboration \cite{CMS:2015ved, CMS:2016xef}. First, one determines the efficiency curves of jet triggers in the samples. The efficiency curves for the $\pprefSample$ are displayed in Figure~\ref{fig:ppref_trig_eff}, for \OO and \NeNe in Figure~\ref{fig:OO_trig_eff}. The points where a jet reaches at least 99\% efficiency are set to be a threshold value. An exception is the first threshold, which is set at the 80\% efficiency of the lowest-\pT trigger. The triggers, with determined thresholds and reference triggers, are listed in Table~\ref{tab:trigger_ppref} for $\pprefSample$ and in Table~\ref{tab:trigger_OO} for \OO and \NeNe.
+\section{\MBSample and \JetSample sample merging}
+The classification (naming) of data samples is based on leading jet \pt in a given event:
+\begin{itemize}
+    \item \textbf{\MBSample} -- events are taken from MinBias stream and have {\green $\pt^\text{lead} < 40$ GeV}
+    \item \textbf{\JetSample} -- events are taken from Main stream (MinBias for \OO, \NeNe) and have {\green $\pt^\text{lead} > 40$ GeV}
+    \item \textbf{\MBOnlySample} -- events are taken from MinBias stream (MinBias for \OO, \NeNe) and do not have a requirement on leading jet \pt
+\end{itemize}
+The \MBOnlySample sample is used only for crosschecks.
+
+To achieve the best possible statistics at high-\pt, we merge \MBSample and \JetSample samples as following. We are following the approach used previously by the CMS Collaboration \cite{CMS:2015ved, CMS:2016xef}. First, one determines the efficiency curves of jet triggers in given system. The efficiency curves for the $\pprefSample$ are displayed in Figure~\ref{fig:ppref_trig_eff}, for \OO and \NeNe in Figure~\ref{fig:OO_trig_eff}. The points where a jet reaches at least 99\% efficiency are set to be a threshold value. An exception is the first threshold, which is set at the 80\% efficiency of the lowest-\pT trigger in \pprefSample. The triggers, with determined thresholds and reference triggers, are listed in Table~\ref{tab:trigger_ppref} for $\pprefSample$ and in Table~\ref{tab:trigger_OO} for \OO and \NeNe.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{images/pp_trig_effs.pdf}
-    \caption{Efficiency curves of the triggers used to obtain the full $\pprefSample$ charged hadron spectrum}
+    \caption{Efficiency curves of the triggers used to obtain the full $\pprefSample$ charged hadron spectrum {\red updated?}}
     \label{fig:ppref_trig_eff}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{images/OO_trig_effs.pdf}
-    \caption{Efficiency curves of the triggers used to obtain the full \OO, \NeNe charged hadron spectrum}
+    \caption{Efficiency curves of the triggers used to obtain the full \OO, \NeNe charged hadron spectrum {\red updated?}}
     \label{fig:OO_trig_eff}
 \end{figure}
 
@@ -54,7 +63,7 @@ The use of various triggers invokes the urge to stitch the track spectrum based 
 \begin{center}
 \begin{tabular}{c|c|c}
 trigger & reference & 99 \% threshold [GeV] \\ \hline
-HLT\_j30a\_L1jTE20 & $\pprefMBtrig$ & 36 (80 \%) \\
+HLT\_j30a\_L1jTE20 & $\pprefMBtrig$ & {\green 40} (80 \%) \\
 HLT\_j30a\_L1jTE20 & $\pprefMBtrig$ & 56 \\
 HLT\_j40\_L1jJ40 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 76 \\
 HLT\_j60\_L1jJ50 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 87 \\
@@ -70,7 +79,6 @@ HLT\_j100\_L1jJ60 & HLT\_mb\_sptrk\_L1RD0\_FILLED & 114
 \begin{center}
 \begin{tabular}{c|c|c}
 trigger & reference & 99 \% threshold [GeV] \\ \hline
-HLT\_j20\_ionp\_L1jJ10 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 27 (80 \%) \\
 HLT\_j20\_ionp\_L1jJ10 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 40 \\
 HLT\_j40\_ionp\_L1jJ20 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 58 \\
 \end{tabular}
@@ -81,26 +89,52 @@ HLT\_j40\_ionp\_L1jJ20 & HLT\_mb\_sptrk\_L1TRT\_FILLED & 58 \\
 
 \newpage % temporary
 
-In any event, the 'AntiKt4HI' jet collection is taken and cleaned such that:
+In any event, the 'AntiKt4HI' jet collection is taken and cleaned before determining leading jet \pt:
 \begin{itemize}
   \item jets must be placed within |$\eta$| < 2.8 of the detector,
-  \item jet timing variable must be within 12.5 ns to remove out-of-time pile up.
+  \item jet timing variable must be within $|t|<12.5$ ns to remove out-of-time pile up jets.
 \end{itemize}
-The distributions of the jet $\eta$ and the timing of the leading jets are shown in the MinBias trigger and jet trigger samples of the $\pprefSample$ sample in Figure \ref{fig:jet_timing} and TBA. The requirement of 12.5 ns removes 31.4 \% of leading jets in the MinBias-triggered sample - there, the jets are removed, but the event is kept. In the jet-triggered events, only 0.3 \% leading jets are removed by the timing cut - there, the event should be removed. 
+The distributions of the jet $\eta$ and the timing of the leading jets are shown in the MB-triggered and jet-triggered events in Figure~\ref{fig:jet_timing} and TBA. The requirement of 12.5 ns removes 31.4\% of leading jets in the MinBias-triggered sample -- there, the jets are removed, but the event is kept. In the jet-triggered events, only 0.3 \% leading jets are removed by the timing cut -- there, the event should be removed. 
 
 % eta will be added late
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\linewidth]{images/jets_timing.png}
-    \caption{MB-triggered timing (in red) and jet-triggered timing (in black) for the leading jets in $\pprefSample$}
+    \includegraphics[width=0.45\linewidth]{images/jet_timing_pp.png}
+    \includegraphics[width=0.45\linewidth]{images/jet_timing_O+O.png}
+    \caption{MB-triggered timing (in blue) and jet-triggered timing (in red) for the leading jets in $\pprefSample$ (left) and in \OO (right) before any cleaning}
     \label{fig:jet_timing}
 \end{figure}
 
 
 \blue{|$\eta$| dist to be added.} \black
 
-Using the collection of well-defined jets, the event is associated with one of the triggers based on the \pT of the leading jet in the event. If the trigger has not fired, the event is discarded, and the next event is about to be processed. If the given trigger has been fired, the weight of the event is the trigger prescale. In case of the region covered by the first jet trigger, the weight is $w = \frac{\mathrm{prescale}}{\epsilon(\pT)}$, where $\epsilon(\pT)$ is the trigger efficiency as a function of the leading jet \pT. All tracks present in the event will have the same weight, the weight of the event, if they pass the track selection criteria discussed in the next chapter. 
+Using the collection of well-defined jets, the event is associated with one of the triggers based on the \pT of the leading jet in the event. If the trigger has not fired, the event is discarded, and the next event is about to be processed. If the given trigger has been fired, the weight of the event is the trigger prescale. In case of the region covered by the first jet trigger, the weight is $w = \frac{\mathrm{prescale}}{\epsilon(\pT)}$, where $\epsilon(\pT)$ is the trigger efficiency as a function of the leading jet \pT. All tracks present in the event will have the same weight, the weight of the event, if they pass the track selection criteria discussed in Chapter~\ref{chap:track_sel}. In \MBSample events the weight is given by 
+\begin{equation}
+    w = p_\text{MB}/\epsilon_\text{MB}(\ntrk),
+\end{equation}
+where $p_\text{MB}$ is the prescale of MB trigger, and $\epsilon_\text{MB}(\ntrk)$ is its efficiency as a function of number of tracks in the event. In \pprefSample $\epsilon_\text{MB}$ is taken as 1, while in \OOSample it is taken from the fit function
+\begin{equation}
+    \epsilon_\text{MB}(\ntrk) = 0.957 - \exp\left(-1.056 \ntrk - 0.748\right)
+\end{equation}
+shown in Figure~\ref{fig:trt_eff}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/trt_eff.png}
+    \caption{Efficiency of MB trigger in \OO. Data points are taken from \cite{Bold:2940146}.}
+    \label{fig:trt_eff}
+\end{figure} 
+in red. 
+
+Spectra from each trigger in \JetSample are summed with the spectrum in \MBSample and the total spectrum of charged particles is obtained. The contribution of each trigger is shown in Figure~\ref{fig:summed_spec_pp_oo}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{images/trig_contributions_pp_var0.png}
+    \includegraphics[width=0.45\linewidth]{images/trig_contributions_oo_cent99_var0.png}
+    \caption{Contributions of each trigger in the total spectrum in \pprefSample (left) and \OO (right). Open black markers show ratio of spectrum in \MBOnlySample sample to the sum of \MBSample and \JetSample samples}
+    \label{fig:summed_spec_pp_oo}
+\end{figure}
+
 
 \section{Event counting in \OO collisions}
 \label{chap:MBdataselection}
